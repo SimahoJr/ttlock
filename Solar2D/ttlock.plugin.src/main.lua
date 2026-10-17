@@ -1,0 +1,10 @@
+local Lockbox = require("plugin.lockbox.lockbox")
+local Array = require("plugin.lockbox.util.array")
+local Bit = require("plugin.lockbox.util.bit")
+local Queue = require("plugin.lockbox.util.queue")
+
+print("Lockbox:", type(Lockbox))
+print("Array:", type(Array))
+print("Bit:", type(Bit))
+print("Queue:", type(Queue))
+print("Bitwise test:", Bit.band(7, 3))

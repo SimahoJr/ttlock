@@ -1,0 +1,6 @@
+return {
+  PWD_TYPE_PERMANENT = 1,
+  PWD_TYPE_COUNT = 2,
+  PWD_TYPE_PERIOD = 3,
+  PWD_TYPE_CIRCLE = 4,
+}
