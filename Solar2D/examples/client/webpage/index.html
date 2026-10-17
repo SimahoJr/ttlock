@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Shannon Smart Access</title>
+<!-- Include jsQR library for decoding QR codes from captured images -->
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- LOGIN -->
+    <section id="loginPage" class="page active">
+        <div class="panel">
+            <div class="brand">
+                <div class="logo">SI</div>
+                <div class="brand-name">SHANNON</div>
+                <div class="brand-company">Italia SRL</div>
+                <div class="brand-product">Smart Access</div>
+            </div>
+
+            <h1 class="title">Smart Access</h1>
+            <p class="subtitle">Authorized access only</p>
+
+            <form id="loginForm" class="form" onsubmit="return false;">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" autocomplete="current-password">
+                </div>
+
+                <div style="display: flex; gap: 8px;">
+                    <button id="loginButton" class="primary-button" type="button">SIGN IN</button>
+                    <button id="qrCodeButton" class="primary-button" type="button">QRCODE</button>
+                </div>
+
+                <!-- Hidden inputs for camera capture & canvas decoding -->
+                <input type="file" id="qrFileInput" accept="image/*" capture="environment" style="display: none;">
+                <canvas id="qrCanvas" style="display: none;"></canvas>
+
+                <div id="loginError" class="error"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- CONFIGURATION -->
+    <section id="configPage" class="page">
+        <div class="panel">
+            <div class="brand" style="margin-bottom: 12px;">
+                <div class="logo" style="width: 40px; height: 40px; font-size: 14px; margin-bottom: 8px;">CFG</div>
+                <div class="brand-name" style="font-size: 16px;">TEST SECRETS</div>
+                <div class="brand-company">Paste WhatsApp / Email JSON</div>
+            </div>
+
+            <div class="form">
+                <div class="field">
+                    <label for="secretsJson">Configuration JSON</label>
+                    <textarea id="secretsJson" spellcheck="false"></textarea>
+                </div>
+
+                <button id="saveConfigButton" class="primary-button" type="button">SAVE & CONTINUE</button>
+                <div id="configError" class="error"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCK -->
+    <section id="lockPage" class="page">
+        <div class="panel lock-panel">
+
+            <div class="lock-header">
+                <h1 id="lockTitle" class="lock-title">Carrubi St 1</h1>
+                <div class="lock-status">Authorized access</div>
+            </div>
+
+            <div class="unlock-area">
+                <button id="unlockButton" class="unlock-button" type="button" aria-label="Unlock">
+                    <div class="lock-icon"></div>
+                    <div id="unlockLabel" class="unlock-label">UNLOCK</div>
+                </button>
+                <div class="unlock-password">
+                    <div class="info-label">User Password</div>
+                    <div id="unlockPasswordValue" class="info-value">------</div>
+                </div>
+            </div>
+
+            <div id="processingText" class="processing-text"></div>
+            <div id="activeStatus" class="active-status"></div>
+            <div id="countdown" class="countdown"></div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Battery</div>
+                    <div id="batteryValue" class="info-value">100%</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Signal</div>
+                    <div id="signalValue" class="info-value">Good</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Distance</div>
+                    <div id="distanceValue" class="info-value">Nearby</div>
+                </div>
+            </div>
+
+            <div class="expiry-container">
+                <div class="expiry-label">Password Time Left</div>
+                <div id="passwordExpiryValue" class="expiry-value">29d 23h 45m</div>
+            </div>
+
+            <button id="signoutButton" class="signout" type="button">SIGN OUT</button>
+        </div>
+    </section>
+
+</div>
+
+<div id="debug" class="debug"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

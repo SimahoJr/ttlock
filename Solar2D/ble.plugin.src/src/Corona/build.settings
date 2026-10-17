@@ -1,0 +1,23 @@
+settings = {
+    plugins = {
+        ["plugin.ttlock"] = {
+            publisherId = "com.shannonit",
+        },
+    },
+
+    android = {
+        usesPermissions = {
+            "android.permission.BLUETOOTH",
+            "android.permission.BLUETOOTH_ADMIN",
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.BLUETOOTH_SCAN",
+            "android.permission.BLUETOOTH_CONNECT"
+        },
+        -- Required TTLock services
+        applicationChildElements = [[
+            <service android:name="com.ttlock.bl.sdk.service.BluetoothLeService"/>
+            <service android:name="com.ttlock.bl.sdk.service.DfuService"/>
+        ]],
+        minSdkVersion = 23,
+    }
+}

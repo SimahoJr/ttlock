@@ -1,0 +1,22 @@
+# compiler: R8
+# compiler_version: 4.0.52
+# common_typos_disable
+# {"id":"com.android.tools.r8.mapping","version":"2.1"}
+# pg_map_id: a8a092b
+# pg_map_hash: SHA-256 a8a092b96117ef55a116f8bc0410356012883370a0b23c4400c2ce83940e725c
+androidx.databinding.DataBindingComponent -> a.a:
+plugin.ttlock.DataBinderMapperImpl -> plugin.ttlock.DataBinderMapperImpl:
+    android.util.SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP -> a
+    1:1:void <clinit>():19:19 -> <clinit>
+    1:1:void <init>():18:18 -> <init>
+    1:5:androidx.databinding.ViewDataBinding getDataBinder(androidx.databinding.DataBindingComponent,android.view.View,int):23:27 -> a
+    6:13:androidx.databinding.ViewDataBinding getDataBinder(androidx.databinding.DataBindingComponent,android.view.View[],int):35:42 -> a
+    1:2:java.util.List collectDependencies():67:68 -> collectDependencies
+    1:1:java.lang.String convertBrIdToString(int):61:61 -> convertBrIdToString
+    1:2:int getLayoutId(java.lang.String):55:56 -> getLayoutId
+plugin.ttlock.DataBinderMapperImpl$InnerBrLookup -> plugin.ttlock.DataBinderMapperImpl$a:
+    android.util.SparseArray sKeys -> a
+    1:4:void <clinit>():73:76 -> <clinit>
+plugin.ttlock.DataBinderMapperImpl$InnerLayoutIdLookup -> plugin.ttlock.DataBinderMapperImpl$b:
+    java.util.HashMap sKeys -> a
+    1:1:void <clinit>():81:81 -> <clinit>

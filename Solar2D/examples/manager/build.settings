@@ -1,0 +1,26 @@
+settings = {
+    plugins = {
+        ["plugin.ble"] = {
+            publisherId = "it.shannonit",
+        },
+        ["plugin.ttlock"] = {
+            publisherId = "it.shannonit",
+        },
+        [ "plugin.bit" ] = { 
+            publisherId = "com.coronalabs" 
+        },
+    },
+
+    android = {
+        usesPermissions = {
+            "android.permission.INTERNET",
+            "android.permission.BLUETOOTH",
+            "android.permission.BLUETOOTH_ADMIN",
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.BLUETOOTH_SCAN",
+            "android.permission.BLUETOOTH_CONNECT"
+        },
+
+        minSdkVersion = 23,
+    }
+}

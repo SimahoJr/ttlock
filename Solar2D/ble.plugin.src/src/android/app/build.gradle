@@ -1,0 +1,37 @@
+
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace "app.ttlock"
+    compileSdkVersion 34
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //添加本地仓库，并把libs目录作为仓库地址
+    repositories {
+        flatDir {
+            dirs '../../android/plugin/build/outputs/aar'
+        }
+    }
+    
+}
+
+dependencies {
+    implementation(name: 'Corona', ext: 'aar')
+    implementation(name: 'plugin-release', ext: 'aar')
+}
+
+

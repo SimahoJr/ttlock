@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'plugin.ble'
+    compileSdkVersion 33
+
+    defaultConfig {
+        namespace 'plugin.ble'
+        minSdkVersion 23
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        disable 'MissingTranslation'
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+
+    // Solar2D
+    implementation(name: 'Corona', ext: 'aar')
+
+    // // Required by the Solar2D plugin build
+    // implementation files(layout.buildDirectory.dir('classes')) {
+    //     builtBy 'compile'
+    // }
+}
+
+def pluginPackageDir = file("${rootProject.projectDir}/../../plugins/android")
+
+tasks.register("packageSolar2DPlugin") {
+    dependsOn("assembleRelease")
+
+    doLast {
+        pluginPackageDir.mkdirs()
+
+        copy {
+            from(layout.buildDirectory.file("outputs/aar/plugin-release.aar"))
+            into(pluginPackageDir)
+        }
+
+        println "Solar2D plugin packaged to: ${pluginPackageDir}"
+    }
+}
+
+tasks.register("packageSolar2DPluginArchive", Tar) {
+    dependsOn("packageSolar2DPlugin")
+
+    archiveFileName = "data.tgz"
+    destinationDirectory = file("${rootProject.projectDir}/../../plugins/android")
+
+    compression = Compression.GZIP
+
+    from("${rootProject.projectDir}/../../plugins") {
+        include "metadata.lua"
+    }
+
+    from("${rootProject.projectDir}/../../plugins/android") {
+        include "plugin-release.aar"
+        include "corona.gradle"
+    }
+}
