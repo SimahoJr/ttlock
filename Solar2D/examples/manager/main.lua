@@ -4,7 +4,7 @@
 
 local system = system
 local json = require("json")
-local qrencode = require("plugin.qrcode_api")
+local qrencode
 
 local MainView = require("ui.view.menu")
 local ActionView = require("ui.view.action")
@@ -14,20 +14,17 @@ display.setDefault("background", 0.05, 0.05, 0.1)
 
 -- BLE & Lock Initialization with Permissions
 local ble, bt_bridge, lock
-if system.getInfo("environment") == "simulator" then
-    lock = require("plugin.ble_mock")
-else
-    ble = require("plugin.ble")
-    bt_bridge = require("plugin.BTBridge")
-    lock = bt_bridge.new()
-    lock:load()
+ble = require("plugin.ble")
+qrencode = require("qrcode_api")
+bt_bridge = require("plugin.ttlock")
+lock = bt_bridge.new()
+lock:load()
 
-    -- Ensure permissions are requested on Android devices
-    if ble.hasPermission and not ble.hasPermission() then
-        print("[BLE] Richiesta dei permessi...")
-        if ble.requestPermission then 
-            ble.requestPermission() 
-        end
+-- Ensure permissions are requested on Android devices
+if ble.hasPermission and not ble.hasPermission() then
+    print("[BLE] Richiesta dei permessi...")
+    if ble.requestPermission then 
+        ble.requestPermission() 
     end
 end
 

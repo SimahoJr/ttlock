@@ -5,7 +5,7 @@
 require("lockbox.lockbox").insecure()
 
 -- local Constants = require("protocol.constants")
-local Protocol = require("protocol.protocol")
+local Protocol = require("plugin.protocol.protocol")
 local Crypto = require("plugin.protocol.crypto")
 
 -- Helper to convert byte string to readable hex

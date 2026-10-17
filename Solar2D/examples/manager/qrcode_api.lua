@@ -1,4 +1,4 @@
-local qrencode = require("qrcode.qrencode")
+local qrencode = require("plugin.qrcode.qrencode")
 local M = {}
 
 function M.saveQRCode(text, filename, moduleSize)
